@@ -1,7 +1,0 @@
-function updateInfo(serv, elemId)
-{
-	str = document.getElementById(elemId).value.replace(" ", "%20");
-	url = 'update.php?server='+serv+"&status="+str;
-
-	new Ajax.Request(url, {method: 'get'});
-}
