@@ -5,30 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script src="js/updateinfo.js"></script>
-	<style type="text/css">.online{color:green}.offline{color:red}</style>
-<script>
-function showtooltip(i) {
- span=$(i.currentTarget);
- if (span.find("span").hasClass('online')) {
- id=span.attr('id').substring(6)
- offset=span.offset();
- $("#tooltip").css({'display': "block", 'left': offset.left+60, 'top': offset.top+5}).html('<img src="stuff/loading.gif"> Загрузка').load('moviepic.php?id='+id)
- }
-}
-function hidetooltip(i) {
- $("#tooltip").css({'display': "none"})
-}
-$(document).ready(
- function() {
-  $(".indicator").mouseover(function(i) {showtooltip(i)}).mouseout(function(i) {hidetooltip(i)});
-
-  $(".indicator").each(function() {
-  id=$(this).attr('id').substring(6)
-  url='stream/status2.php?id='+id;
-  $(this).html('<img src="stuff/loading.gif"> Загрузка').load(url)
- })
-})
-</script>
 </head>
 
 <body>
@@ -52,18 +28,19 @@ $servers=unserialize(file_get_contents("db/serverlist.db"));
 
 foreach($servers as $i => $server)
 {
-print('<tr class="tr'.($i & 1).'">
-    <td>
-      <span id="stream'.$i.'" class="indicator"></span>
-    </td>
-    <td class="url"><a href="'.$server['url'].'">'.$server['url'].'</a></td>
-    <td class="owner">'.$server['owner'].'</td>
-    <td>'.htmlspecialchars($server['retrans']).'</td>
-    ');
+?>
+<tr class="tr<?=($i & 1)?>" id ="id<?=$id?>">
+  <td>
+    <span id="stream<?=$i?>" class="indicator"></span>
+  </td>
+  <td class="url"><a href="<?=$server['url']?>"><?=$server['url']?></a></td>
+  <td class="owner"><?=$server['owner']?></td>
+  <td><?=(htmlspecialchars($server['retrans']))?></td>
+  <?
     
     $trans = ($server['desc'] ? $server['desc'] : "Нет описания");
     
-    print('<td class="desc"><div id="infobox'.$i.'"><a class="slabel" onclick="document.getElementById(\'infobox'.$i.'\').style.display=\'none\';document.getElementById(\'editbox'.$i.'\').style.display=\'block\';return false;">'.$trans.'</a></div><div id="editbox'.$i.'" style="display:none;"><input type="text" value="'.$trans.'" id="stext'.$i.'" /><a onclick="updateInfo(\''.$i.'\')">Обновить</a></div></td>');
+    print('<td class="desc edit"><div id="infobox'.$i.'"><a class="slabel" onclick="document.getElementById(\'infobox'.$i.'\').style.display=\'none\';document.getElementById(\'editbox'.$i.'\').style.display=\'block\';return false;">'.$trans.'</a></div><div id="editbox'.$i.'" style="display:none;"><input type="text" value="'.$trans.'" id="stext'.$i.'" /><a onclick="updateInfo(\''.$i.'\')">Обновить</a></div></td>');
     
     print("</tr>\n\n");
 }

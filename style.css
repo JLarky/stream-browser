@@ -80,3 +80,7 @@ a{
 	margin:0px;
 	padding:0px;
 }
+
+.online{color:green}
+
+.offline{color:red}
