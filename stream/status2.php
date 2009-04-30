@@ -15,19 +15,13 @@ $addr = server($addr);
 if ($server['udp'] == 'TRUE')
 	$addr = "udp://" . $addr;
 	
-//print($addr);
-
-//Test the server connection
 $churl = @fsockopen($addr, $port, $errno, $errstr, 5);
 
              if (!$churl){
-                         //echo $errstr;
-               //header("Location: $dead");
-		echo "<font color=red>Offline</font>";
+		echo '<span class="offline">Offline</font>';
                 }
              else {
-                  //header("Location: $live");
-		echo "<font color=green onmouseover=\"ajax_showTooltip('stream/moviepic.php?id=$servid',this);return false\" onmouseout=\"ajax_hideTooltip()\">Online</font>";
+		echo '<span class="online">Online</font>';
                   }
 function server($addr){
          if(strstr($addr,"/")){$addr = substr($addr, 0, strpos($addr, "/"));}
