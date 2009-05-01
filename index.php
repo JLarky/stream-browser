@@ -10,10 +10,9 @@
 <body>
 <div id="tooltip" style="position: absolute;display:none"></div>
 <div id="header"><img alt="" src="stuff/shout.gif"/>&nbsp;Трансляции</div>
-<h4>Если знаете еще сервера, пишите в личку в DC.</h4>Для просмотра картинки трансляции подведите мышку к слову <span style="color:#008000">Online</span>.<br /><br />
-<em>Новая функция:</em> описание трансляций. Уважаемый пользователь, есть просьба править описания по мере необходимости. Это несложно: нажмите на текущее описание, введите новый текст и щелкните "Обновить".
-
-<br /><br />
+<h4>Если знаете еще сервера, пишите в личку в DC.</h4>
+<p>Для просмотра картинки трансляции подведите мышку к слову <span class="online">Online</span>.</p>
+<p>Вы можете поменять описание трансляции. Для этого наведите мышкой на описание и кликните edit</p>
 <table>
 <tr>
 	<th>Состояние</th>
@@ -24,27 +23,22 @@
 
 </tr>
 <?php
-$servers=unserialize(file_get_contents("db/serverlist.db"));
+require_once("utils.php");
 
-foreach($servers as $i => $server)
-{
-    $desc = ($server['desc'] ? htmlspecialchars($server['desc']) : "Нет описания");
+$servers=servers_get();
 
+foreach($servers as $i => $server) {
 ?>
 <tr class="tr<?=($i & 1)?>" id="id<?=$i?>">
-  <td>
-    <span id="stream<?=$i?>" class="indicator"></span>
-  </td>
-  <td class="url"><a href="<?=$server['url']?>"><?=$server['url']?></a></td>
-  <td class="owner"><?=$server['owner']?></td>
-  <td><?=(htmlspecialchars($server['retrans']))?></td>
-  <td class="decs"><span class="edit" id="desc<?=$i?>"><?=$desc?></span></td>
-  <?
-    
-    
-    //print('<td class="desc edit"><div id="infobox'.$i.'"><a class="slabel" onclick="document.getElementById(\'infobox'.$i.'\').style.display=\'none\';document.getElementById(\'editbox'.$i.'\').style.display=\'block\';return false;">'.$trans.'</a></div><div id="editbox'.$i.'" style="display:none;"><input type="text" value="'.$trans.'" id="stext'.$i.'" /><a onclick="updateInfo(\''.$i.'\')">Обновить</a></div></td>');
-    
-    print("</tr>\n\n");
+ <td><span id="stream<?=$i?>" class="indicator"></span></td>
+<?
+ foreach (filds_get() as $key => $editable) {
+  print_td($i, $key, htmlspecialchars($server[$key]),$editable);
+ }
+?>
+</tr>
+
+<?
 }
 ?>
 </table>

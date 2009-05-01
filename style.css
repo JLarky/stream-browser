@@ -71,9 +71,8 @@ a{
 	padding-left: 5em;
 }
 
-.desc {
-	padding-left: 2em;
-}
+.desc {padding-left: 2em;}
+.desc input {margin-left:-2em;}
 
 .stext{
 	width:100%;
@@ -81,8 +80,12 @@ a{
 	padding:0px;
 }
 
+table tr {height:1.6em;}
+
 .online{color:green}
 
 .offline{color:red}
 
-#edit-hint {position:absolute;}
+#edit-hint {position:absolute;display:none;color:blue;text-decoration:underline;cursor:pointer;}
+
+.url span {color:blue;text-decoration:underline;cursor:pointer;}

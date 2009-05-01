@@ -3,8 +3,9 @@ header('Cache-Control: no-cache');
 header('Pragma: no-cache');
 
 error_reporting(E_ALL);
+require_once("utils.php");
 
-$servers=unserialize(file_get_contents("db/serverlist.db"));
+$servers=servers_get();
 $servid=intval($_GET['id']);
 $server=$servers[$servid];
 $link=$server['url'];
