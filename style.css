@@ -84,3 +84,5 @@ a{
 .online{color:green}
 
 .offline{color:red}
+
+#edit-hint {position:absolute;}

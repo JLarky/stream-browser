@@ -28,19 +28,21 @@ $servers=unserialize(file_get_contents("db/serverlist.db"));
 
 foreach($servers as $i => $server)
 {
+    $desc = ($server['desc'] ? htmlspecialchars($server['desc']) : "Нет описания");
+
 ?>
-<tr class="tr<?=($i & 1)?>" id ="id<?=$id?>">
+<tr class="tr<?=($i & 1)?>" id="id<?=$i?>">
   <td>
     <span id="stream<?=$i?>" class="indicator"></span>
   </td>
   <td class="url"><a href="<?=$server['url']?>"><?=$server['url']?></a></td>
   <td class="owner"><?=$server['owner']?></td>
   <td><?=(htmlspecialchars($server['retrans']))?></td>
+  <td class="decs"><span class="edit" id="desc<?=$i?>"><?=$desc?></span></td>
   <?
     
-    $trans = ($server['desc'] ? $server['desc'] : "Нет описания");
     
-    print('<td class="desc edit"><div id="infobox'.$i.'"><a class="slabel" onclick="document.getElementById(\'infobox'.$i.'\').style.display=\'none\';document.getElementById(\'editbox'.$i.'\').style.display=\'block\';return false;">'.$trans.'</a></div><div id="editbox'.$i.'" style="display:none;"><input type="text" value="'.$trans.'" id="stext'.$i.'" /><a onclick="updateInfo(\''.$i.'\')">Обновить</a></div></td>');
+    //print('<td class="desc edit"><div id="infobox'.$i.'"><a class="slabel" onclick="document.getElementById(\'infobox'.$i.'\').style.display=\'none\';document.getElementById(\'editbox'.$i.'\').style.display=\'block\';return false;">'.$trans.'</a></div><div id="editbox'.$i.'" style="display:none;"><input type="text" value="'.$trans.'" id="stext'.$i.'" /><a onclick="updateInfo(\''.$i.'\')">Обновить</a></div></td>');
     
     print("</tr>\n\n");
 }
@@ -52,6 +54,8 @@ foreach($servers as $i => $server)
 <div style="text-align:center">
 <a href="http://github.com/JLarky/stream-browser/tree/master">view source</a>
 </div>
+
+<div id="edit-hint">edit</div>
 
 </body>
 </html>
