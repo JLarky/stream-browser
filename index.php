@@ -1,10 +1,11 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Трансляции локальной сети</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script src="js/updateinfo.js"></script>
+	<script type="text/javascript" src="js/updateinfo.js"></script>
 </head>
 
 <body>
@@ -42,12 +43,21 @@ foreach($servers as $i => $server) {
 }
 ?>
 </table>
-<br>
-</div>
 
-<div style="text-align:center">
+<p style="text-align:center;padding-top:1em;">
+    <a href="http://validator.w3.org/check?uri=referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://www.w3.org/Icons/valid-xhtml10-blue"
+        alt="Valid XHTML 1.0 Strict"/></a>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!" /></a>
+<br />
 <a href="http://github.com/JLarky/stream-browser/tree/master">view source</a>
-</div>
+
+</p>
+
 
 <div id="edit-hint">edit</div>
 
