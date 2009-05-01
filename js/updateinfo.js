@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
-	$(".edit").mouseenter(function(e){
+	$(".edit").parent().mouseenter(function(e){
 		if ($("input").is("input")) {return false;};
-		span=$(e.currentTarget);
+		span=$(e.currentTarget).find(".edit");
 		var id=span.parent().parent().attr('id').substring(2);
 		$("#edit-hint").remove().appendTo(e.currentTarget);
 		//$('<div id="edit-hint">edit</div>').
-		var offset=span.offset();
-		$("#edit-hint").css({'left': offset.left+10,'top':offset.top,
+		var offset=$(this).offset();
+		$("#edit-hint").css({'left': offset.left+$(this).width()/2,'top':offset.top+5,
 			    'display':"block",'opacity':"1",'background':"white",
 			    'padding-left':"3px",'padding-right':"3px"});
 		$("#edit-hint").click(function() {edit_hint_click()})
