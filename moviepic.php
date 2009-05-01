@@ -26,7 +26,7 @@ echo "Radio    ;)<br><br><br>";
 if (file_exists($dir."/00000050.jpg")) {
 echo "<img src=\"tmp/im".$servid."/00000150.jpg?$ctime\" width=\"170\" height=\"120\" alt=\"\" border=\"0\">\n";
 } else {
-echo "<span style='background:white'>Или это радио, или у меня нету подходищих кодеков</span>";
+echo "<span style='background:white'>Или это радио, или у меня нету подходящих кодеков</span>";
 }
 
 ?>
