@@ -1,9 +1,9 @@
 <?php
 function servers_get() {
- return unserialize(file_get_contents("db/serverlist.db"));
+ return unserialize(file_get_contents("serverlist.db"));
 }
 function servers_set($servers) {
- return file_put_contents("db/serverlist.db", serialize($servers));
+ return file_put_contents("serverlist.db", serialize($servers));
 }
 
 

@@ -1,0 +1,3 @@
+directory tmp and file serverlist.db must be writable by server
+so do
+chmod 777 tmp serverlist.db

@@ -18,7 +18,7 @@ $(document).ready(function() {
 	
 	$(".indicator").each(function() {
 		var id=$(this).attr('id').substring(6);	
-		var url='stream/status2.php?id='+id;
+		var url='status.php?id='+id;
 		$(this).html('<img src="stuff/loading.gif"> Загрузка').load(url)
 		    })
 

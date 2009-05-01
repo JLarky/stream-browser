@@ -1,6 +1,7 @@
 <?php
-error_reporting(0);
-include('stream2.inc.php');
+require_once("utils.php");
+
+$servers=servers_get();
 $servid=$_GET['id'];
 $server=$servers[$servid];
 $link = $server['serv'].":";
