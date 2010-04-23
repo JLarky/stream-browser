@@ -27,6 +27,7 @@
 require_once("utils.php");
 
 $servers=servers_get();
+//var_dump($servers);
 
 foreach($servers as $i => $server) {
 ?>

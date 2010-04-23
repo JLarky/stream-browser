@@ -4,9 +4,10 @@ require_once("utils.php");
 $servers=servers_get();
 $servid=$_GET['id'];
 $server=$servers[$servid];
-$link = $server['serv'].":";
-$s_link = str_replace("::", ":", $link);
-list($addr,$port)= explode (':',"$s_link");
+list($t, $link)=explode ('//',$server['url']);
+list($addr,$port)= explode (':',"$link");
+//var_dump($addr,$port);
+
 if (empty($port)){
         $port = 80;
 }
@@ -15,7 +16,8 @@ $addr = server($addr);
 
 if ($server['udp'] == 'TRUE')
 	$addr = "udp://" . $addr;
-	
+
+//var_dump($addr, $port, $errno, $errstr, 5);	
 $churl = @fsockopen($addr, $port, $errno, $errstr, 5);
 
              if (!$churl){

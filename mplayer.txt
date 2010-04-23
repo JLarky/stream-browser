@@ -1,0 +1,1 @@
+/usr/bin/mplayer /media/AgaMegaStorage/WoW/DarkmooneFaire_English.avi -frames 290 -nocache -ao null -speed 99 -vo jpeg:outdir=/tmp/kde
