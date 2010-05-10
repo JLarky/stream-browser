@@ -10,29 +10,60 @@
 
 <body>
 <div id="tooltip" style="position: absolute;display:none"></div>
-<div id="header"><img alt="" src="stuff/shout.gif"/>&nbsp;Трансляции</div>
-<h4>Если знаете еще сервера, пишите в личку в DC.</h4>
-<p>Для просмотра картинки трансляции подведите мышку к слову <span class="online">Online</span>.</p>
-<p>Вы можете поменять описание трансляции. Для этого наведите мышкой на описание и кликните edit</p>
-<table>
-<tr>
-	<th>Состояние</th>
-	<th>Адрес</th>
-	<th>Держатель сервиса</th>
-	<th>Ретрансляция</th>
-	<th>Что транслирует</th> 
+<div id="header"><a href="http://jlarky.punklan.net/stream/">Трансляции локальной сети</a></div>
 
+
+<table id="content">
+
+<tr class="sh">
+	<td colspan="4">Прямые трансляции</td>
 </tr>
 <?php
 require_once("utils.php");
-
 $servers=servers_get();
-//var_dump($servers);
 
-foreach($servers as $i => $server) {
+if (isset($_REQUEST['url'])) {
+  $url=$_REQUEST['url'];
+  $retrans=$_REQUEST['retrans'];
+  $retrans=($retrans=="yes") ? "Да" : "Нет";
+  $new=new_server();
+  $new['url']=$url;$new['retrans']=$retrans;
+  $servers[]=$new;
+  servers_set($servers);
+  echo "<br> Сервер был добавлен";
+}
+
+
+function name_sort($s1, $s2) {
+   if ($s1['owner'] == $s2['owner']) {return 0;}
+   return ($s1['owner']>$s2['owner']) ? 1 : -1;
+};
+function filter_retr($val) {return $val['retrans'] === "Да";};
+function filter_direct($val) {return $val['retrans'] !== "Да";};
+
+foreach($servers as $i => $server) {$servers[$i]['id']=$i;};
+//sort
+usort($servers, "name_sort");
+$retr=array_filter($servers, "filter_retr");
+$direc=array_filter($servers, "filter_direct");
+$servers=array_merge($direc,$retr);
+//end sort
+unset($prev);$j=0;
+foreach($servers as $server) {
+$j++;
+$i=$server['id'];
+// раздел между транляцией и ретрансляцией
+if (isset($prev) && $server['retrans']!=$prev) {
 ?>
-<tr class="tr<?=($i & 1)?>" id="id<?=$i?>">
- <td><span id="stream<?=$i?>" class="indicator"></span></td>
+<tr class="sh">
+	<td colspan="4">Ретрансляции</td>
+</tr>
+<?
+};
+$prev=$server['retrans'];
+?>
+<tr class="tr<?=($j & 1)?>" id="id<?=$i?>">
+ <td class="status"><span id="stream<?=$i?>" class="indicator"></span></td>
 <?
  foreach (filds_get() as $key => $editable) {
   print_td($i, $key, htmlspecialchars($server[$key]),$editable);
@@ -45,20 +76,37 @@ foreach($servers as $i => $server) {
 ?>
 </table>
 
-<p style="text-align:center;padding-top:1em;">
+<div style="text-align:center;padding-top:1em;margin-bottom:30px;">
+<p>Для просмотра картинки трансляции подведите мышку к слову <span class="online">Online</span>.</p>
+<p>Вы можете поменять описание трансляции. Для этого наведите мышкой на описание и кликните edit</p>
     <a href="http://validator.w3.org/check?uri=referer">
     <img style="border:0;width:88px;height:31px"
-        src="http://www.w3.org/Icons/valid-xhtml10-blue"
+        src="stuff/xhtml.png"
         alt="Valid XHTML 1.0 Strict"/></a>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
     <img style="border:0;width:88px;height:31px"
-        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        src="stuff/css.png"
         alt="Valid CSS!" /></a>
 <br />
 <a href="http://github.com/JLarky/stream-browser/tree/master">view source</a>
+<?php
+if (is_admin()) {
+?>
+<br />
+<div style="margin-top:2em;">
+<form name="input" action="." method="post">
+URL: <input type="text" name="url" />
+Retrans: <input type="checkbox" name="retrans" value="yes" />
+<input type="submit" value="Добавить" />
+</form>
+</div>
+<?php
+}
+?>
+</div>
 
-</p>
 
+<div id="footer">Если знаете других трансляторов --- свяжитесь с <a href="http://wiki.punklan.net/p:JLarky">JLarky</a>.</div>
 
 <div id="edit-hint">edit</div>
 

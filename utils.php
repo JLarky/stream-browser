@@ -7,6 +7,9 @@ function servers_set($servers) {
 }
 
 
+function new_server() {
+  return array('url'=> 'not set', 'owner'=> 'not set', 'retrans'=> 'Да', 'desc'=> 'not set', 'dontpic'=> false);
+}
 
 function print_td($i, $key, $val, $editable) {
  $val=$val ? $val : "N/A";
@@ -14,7 +17,7 @@ function print_td($i, $key, $val, $editable) {
 }
 
 function filds_get() {
- return array('url' => is_admin(), 'owner' => is_admin(), 'retrans' => is_admin(), 'desc' => true);
+ return array('url' => is_admin(), 'owner' => is_admin(), 'desc' => true);
 }
 
 function is_admin() {

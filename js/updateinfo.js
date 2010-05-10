@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	$(".edit").parent().mouseenter(function(e){
-		if ($("input").is("input")) {return false;};
+		if ($(".edit input").is("input")) {return false;};
 		span=$(e.currentTarget).find(".edit");
 		var id=span.parent().parent().attr('id').substring(2);
 		$("#edit-hint").remove().appendTo(e.currentTarget);
@@ -19,7 +19,7 @@ $(document).ready(function() {
 	$(".indicator").each(function() {
 		var id=$(this).attr('id').substring(6);	
 		var url='status.php?id='+id;
-		$(this).html('<img src="stuff/loading.gif"> Загрузка').load(url)
+		$(this).html('<img width="16" height="16" src="stuff/loading.gif">').load(url)
 		    })
 
 	$(".url span").click(function(e){

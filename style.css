@@ -1,87 +1,23 @@
-.tr0 {
-background-color : #f2efdf;
-}
-.tr1 {
-background-color : #d9d0c1;
-}
-table {
-border-collapse : collapse;
-text-align : center;
-width : 100%;
-}
-th {
-border-bottom : 1px solid;
-}
-td {
-padding : 2px;
-}
-.offline {
-color : red;
-}
-.online {
-color : green;
-}
-#header, #footer {
-background-color : #f2efdf;
-width : 100%;
-margin-bottom : 2pt;
-padding-bottom : 2pt;
-border : 0 none;
-}
-#header {
-border-bottom : 1px solid black;
-font-weight : bold;
-}
-#footer {
-border-top : 1px solid black;
-font-size : 10pt;
-text-align : right;
-position : absolute;
-bottom : 0;
-left : 0;
-}
-a {
-color : blue;
-}
-.slabel {
-color : #000000;
-text-decoration : underline;
-}
-.url, .owner, .desc {
-text-align : left;
-}
-.url {
-padding-left : 5em;
-}
-.desc {
-padding-left : 2em;
-}
-.desc input {
-margin-left : -2em;
-}
-.stext {
-width : 100%;
-margin : 0;
-padding : 0;
-}
-table tr {
-height : 1.6em;
-}
-.online {
-color : green;
-}
-.offline {
-color : red;
-}
-#edit-hint {
-position : absolute;
-display : none;
-color : blue;
-text-decoration : underline;
-cursor : pointer;
-}
-.url span {
-color : blue;
-text-decoration : underline;
-cursor : pointer;
-}
+table{border-collapse:collapse;text-align:center;}
+td{padding:0.2em 2px;}
+table tr{height:1.6em;}
+a{color:blue;}
+#header, #footer{background-color:#dfd3b6;position:fixed;left:0px;color:#776045;width:100%;float:left;text-align:center;}
+#header{top:0px;}
+#footer{bottom:0px;}
+#content{margin-left:10%;padding-left:3em;width:80%;}
+tr.sh td{padding-top:2em;padding-bottom:0.5em;border-bottom:solid 1px;}
+.tr0{background-color:#fcfcfe;}
+.tr1{background-color:#DAD5CB;}
+.offline{color:red;}
+.online{color:green;}
+.status{text-align:center;width:97px;}
+.url, .owner, .desc{text-align:left;}
+.url{padding-left:3em;}
+.desc{padding-left:2em;}
+.desc input{margin-left:-2em;}
+.online{color:green;}
+.offline{color:red;}
+.url span{color:blue;text-decoration:underline;cursor:pointer;}
+.url span, a{color:#0092b2;}
+#edit-hint{position:absolute;display:none;color:blue;text-decoration:underline;cursor:pointer;}
