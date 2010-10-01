@@ -14,7 +14,7 @@ if (empty($port)){
 
 $addr = server($addr);
 
-if ($server['udp'] == 'TRUE')
+if (isset($server['udp'])&& ($server['udp'] == 'TRUE'))
 	$addr = "udp://" . $addr;
 
 //var_dump($addr, $port, $errno, $errstr, 5);	
